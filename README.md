@@ -1,2 +1,0 @@
-# qaguru2
-homework
