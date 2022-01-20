@@ -1,9 +1,13 @@
 package guru.qa;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -21,34 +25,44 @@ public class PracticeFormTests {
         $("#firstName").setValue("Daria");
         $("#lastName").setValue("E");
         $("#userEmail").setValue("tdariae@gmail.com");
+        $("[for='gender-radio-2']").click();
+        $("#userNumber").setValue("9113214457");
 
-        $("#userNumber").setValue("+79111111111");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").click();
+        $(".react-datepicker__month-select").selectOption("July");
+        $(".react-datepicker__year-select").click();
+        $(".react-datepicker__year-select").selectOption("2019");
+        $(".react-datepicker__day--003").click();
 
-        $("#subjectsInput").setValue("AutoQA");
+        $("#subjectsInput").setValue("p").pressEnter();
+        $("#subjectsInput").setValue("co").pressEnter();
+        $("#subjectsInput").setValue("a").pressEnter();
 
+        $("[for='hobbies-checkbox-1']").click();
+        $("[for='hobbies-checkbox-2']").click();
+        $("[for='hobbies-checkbox-3']").click();
 
-
+        File file = new File ("src/test/resources/rm.jpeg");
+        $("#uploadPicture").uploadFile(file);
 
         $("#currentAddress").setValue("Saint-Petersburg");
 
-//        $("#submit").click();
+        $("#react-select-3-input").setValue("Raj").pressEnter();
+        $("#react-select-4-input").setValue("Jaipur").pressEnter();
 
+        $("#submit").click();
 
-        //firstName
-        //lastName
-        //userEmail
-        //gender-radio-2
-        //userNumber
-        //dateOfBirthInput
-        //subjectsContainer
-        //hobbies-checkbox-1
-        //hobbies-checkbox-2
-        //hobbies-checkbox-3
-        //uploadPicture
-        //currentAddress
-        //state
-        //city
-
-
+        $("#example-modal-sizes-title-lg").shouldBe(Condition.visible);
+        $(".table-responsive").shouldHave(text("Daria"));
+        $(".table-responsive").shouldHave(text("E"));
+        $(".table-responsive").shouldHave(text("tdariae@gmail.com"));
+        $(".table-responsive").shouldHave(text("Female"));
+        $(".table-responsive").shouldHave(text("9113214457"));
+        $(".table-responsive").shouldHave(text("03 July,2019"));
+        $(".table-responsive").shouldHave(text("Physics, Computer Science, Maths"));
+        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
+        $(".table-responsive").shouldHave(text("rm.jpeg"));
+        $(".table-responsive").shouldHave(text("Rajasthan Jaipur"));
     }
 }
