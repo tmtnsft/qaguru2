@@ -24,7 +24,7 @@ public class PracticeFormTests {
 
         $("#firstName").setValue("Daria");
         $("#lastName").setValue("E");
-        $("#userEmail").setValue("tdariae@gmail.com");
+        $("#userEmail").setValue("td@mail.com");
         $("[for='gender-radio-2']").click();
         $("#userNumber").setValue("9113214457");
 
@@ -49,20 +49,20 @@ public class PracticeFormTests {
         $("#currentAddress").setValue("Saint-Petersburg");
 
         $("#react-select-3-input").setValue("Raj").pressEnter();
-        $("#react-select-4-input").setValue("Jaipur").pressEnter();
+        $("#react-select-4-input").setValue("Jai").pressEnter();
 
         $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldBe(Condition.visible);
-        $(".table-responsive").shouldHave(text("Daria"));
-        $(".table-responsive").shouldHave(text("E"));
-        $(".table-responsive").shouldHave(text("tdariae@gmail.com"));
-        $(".table-responsive").shouldHave(text("Female"));
-        $(".table-responsive").shouldHave(text("9113214457"));
-        $(".table-responsive").shouldHave(text("03 July,2019"));
-        $(".table-responsive").shouldHave(text("Physics, Computer Science, Maths"));
-        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
-        $(".table-responsive").shouldHave(text("rm.jpeg"));
-        $(".table-responsive").shouldHave(text("Rajasthan Jaipur"));
+        $(".table-responsive").shouldHave(text("Daria"), 
+                (text("E")),
+                (text("td@mail.com")),
+                (text("Female")),
+                (text("9113214457")),
+                (text("03 July,2019")),
+                (text("Physics, Computer Science, Maths")),
+                (text("Sports, Reading, Music")),
+                (text("rm.jpeg")),
+                (text("Rajasthan Jaipur")));
     }
 }
